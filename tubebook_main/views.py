@@ -25,7 +25,7 @@ def authorList(request):
 
 def authorProfile(request, id):
     author = Authors.getAuthorProfile(id)
-    posts = PostList.getAuthorPost(id, 1)
+    posts = PostList.getPostList(1, "author", id)
     return render_to_response('author_profile.html', locals())
 
 def postListByTag(request, id, page):
@@ -34,4 +34,14 @@ def postListByTag(request, id, page):
     page = PostList.getPageInfo(page, "tag", id)
     tages = TagList.getTagList()
     tag = TagList.getTag(id)
+
     return render_to_response('tag_post.html', locals())
+
+def postListByAuthor(request, id, page):
+    posts = PostList.getPostList(page, "author", id)
+    sidePosts = PostList.getSidePostList()
+    page = PostList.getPageInfo(page, "author", id)
+    tages = TagList.getTagList()
+    author = Authors.getAuthorProfile(id)
+
+    return render_to_response('author_post.html', locals())

@@ -10,5 +10,6 @@ urlpatterns = [
     url(r'^about/$', about),
     url(r'^author/$', authorList),
     url(r'^author/(\d)/$', authorProfile),
-    url(r'^tag/(\d)/(\d)/$', postListByTag)
+    url(r'^tag/(\d)/(\d)/$', postListByTag),
+    url(r'^author/(\d)/(\d)/$', postListByAuthor)
 ]

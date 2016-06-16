@@ -41,41 +41,6 @@ class PostList:
 
         return postList
 
-    def getAuthorPost(id, page):
-        author_id = int(id)
-        pageNum = int(page)
-
-        author = WriterProfile.objects.get(id = author_id)
-        posts = Post.objects.filter(author_id = author_id)
-        count = posts.count()
-        result = []
-
-        firstPost = count - PAGE_MAX_POST * (pageNum - 1)
-        lastPost = firstPost - PAGE_MAX_POST
-        if lastPost < 1 :
-            lastPost = 1
-
-        for i in range(firstPost, lastPost-1, -1):
-            tag = Tag.objects.get(id = posts[i-1].tag_id)
-            content = posts[i-1].content
-            if len(content) > 120:
-                content = content[:120]
-            temp = {
-                "id": posts[i-1].i,
-                "title": posts[i-1].title,
-                "author": author.name,
-                "author_id": posts[i-1].author_id,
-                "author_picture": author.picture_url,
-                "date": posts[i-1].date,
-                "video_url": posts[i-1].video_url,
-                "content": content,
-                "tag_id": posts[i-1].tag_id,
-                "tag": tag.tag_name
-            }
-            result.append(temp)
-
-        return result
-
     def getPostList(page, type="", id=""):
         pageNum = int(page)
         if type == "tag":
