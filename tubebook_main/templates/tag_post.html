@@ -2,7 +2,7 @@
 {% load static %}
 <html>
 	<head>
-		<title>TubeBook</title>
+		<title>{{ tag.name }} - TubeBook</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -76,6 +76,7 @@
 
 				<!-- Main -->
 					<div id="main">
+                        <h2>Tag : {{ tag.name }}</h2>
 
                         {% for post in posts %}
 						<!-- Post -->
@@ -104,8 +105,8 @@
 
 						<!-- Pagination -->
 							<ul class="actions pagination">
-								<li><a href="{% if page.emP %}{% else %}/{{ page.previous }}{% endif %}" class="{% if page.emP %}disabled{% endif %} button big previous">Previous Page</a></li>
-								<li><a href="{% if page.emN %}{% else %}/{{ page.next }}{% endif %}" class="{% if page.emN %}disabled{% endif %} button big next">Next Page</a></li>
+								<li><a href="{% if page.emP %}{% else %}/tag/{{ tag.id }}/{{ page.previous }}{% endif %}" class="{% if page.emP %}disabled{% endif %} button big previous">Previous Page</a></li>
+								<li><a href="{% if page.emN %}{% else %}/tag/{{ tag.id }}/{{ page.next }}{% endif %}" class="{% if page.emN %}disabled{% endif %} button big next">Next Page</a></li>
 							</ul>
 
 					</div>
