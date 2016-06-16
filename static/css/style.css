@@ -185,3 +185,29 @@ ul.actions > li > a {
         margin: 0 0 0 1.5em;
     }
 }
+
+.author_container {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+.author_wrap {
+    display: inline-block;
+    width: 250px;
+    margin: 2em;
+}
+
+.author_picture {
+    width: 100%;
+    border: 1px solid #EEE;
+}
+
+.author_picture > img {
+    width: 100%;
+}
+
+.author_name {
+    margin-top: 1.2em;
+    text-transform: inherit;
+}
