@@ -79,16 +79,19 @@
 						<!-- Post -->
 							<article class="post">
                                 <div class="author_container">
-                                    {% for author in authors %}
                                     <div class="author_wrap">
-                                        <a href="/author/{{ author.id }}">
-                                            <div class="author_picture">
-                                                <img src="{{ author.picture_url }}" alt="">
-                                            </div>
-                                            <h2 class="author_name">{{ author.name }}</h3>
-                                        </a>
+                                        <div class="author_picture">
+                                            <img src="{{ author.picture_url }}" alt="">
+                                        </div>
+                                        <h2 class="author_name">{{ author.name }}</h3>
                                     </div>
-                                    {% endfor %}
+
+                                    <p>
+                                        {{ author.about }}
+                                    </p>
+
+                                    <p><a href="">文章數量:  {{ author.count }}</a></p>
+
                                 </div>
 
 

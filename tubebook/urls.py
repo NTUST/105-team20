@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^post/(\d)/$', post),
     url(r'^about/$', about),
     url(r'^author/$', authorList),
+    url(r'^author/(\d)/$', authorProfile),
 ]

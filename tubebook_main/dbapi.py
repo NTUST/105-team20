@@ -93,6 +93,18 @@ class TagList:
         return allTags
 
 class Authors:
+    def getAuthorProfile(id):
+        author_id = int(id)
+        author = WriterProfile.objects.get(id = author_id)
+        count = Post.objects.filter(author_id = author_id).count()
+        return {
+            "id": author.id,
+            "name": author.name,
+            "picture_url": author.picture_url,
+            "about": author.about,
+            "count": count
+        }
+
     def getAuthorList():
         allAuthor = WriterProfile.objects.all()
         result = []
@@ -100,8 +112,7 @@ class Authors:
             temp = {
                 "id": author.id,
                 "name": author.name,
-                "picture_url": author.picture_url,
-                "about": author.about
+                "picture_url": author.picture_url
             }
             result.append(temp)
 
