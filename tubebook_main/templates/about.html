@@ -1,0 +1,111 @@
+{% load static %}
+<html>
+	<head>
+		<title>About - TubeBook</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <link rel="stylesheet" href="{% static "css/main.css" %}" />
+        <link rel="stylesheet" href="{% static "css/style.css" %}" />
+        <link rel="stylesheet" href="{% static "css/font-awesome.min.css" %}" />
+
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="/">TubeBook</a></h1>
+						<nav class="links">
+							<ul>
+								<li><a href="/">文章</a></li>
+                                <li><a href="/about">簡介</a></li>
+								<li><a href="/author">作者</a></li>
+							</ul>
+						</nav>
+                        <div class="login">
+                            <a href="/admin">Log In</a>
+                        </div>
+						<nav class="main">
+							<ul>
+								<li class="menu">
+									<a class="fa-bars" href="#menu">Menu</a>
+								</li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<section id="menu">
+
+						<!-- Links -->
+							<section>
+								<ul class="links">
+									<li>
+										<a href="/">
+											<h3>文章</h3>
+											<p>TubeBook上的文章列表</p>
+										</a>
+									</li>
+									<li>
+										<a href="/about">
+											<h3>簡介</h3>
+											<p>關於TubeBook的一些介紹</p>
+										</a>
+									</li>
+									<li>
+										<a href="/author">
+											<h3>作者</h3>
+											<p>在TubeBook上寫文章的傢伙</p>
+										</a>
+									</li>
+								</ul>
+							</section>
+
+						<!-- Actions -->
+							<section>
+								<ul class="actions vertical">
+									<li><a href="/admin" class="button big fit">Log In</a></li>
+								</ul>
+							</section>
+
+					</section>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<article class="post">
+								<header>
+									<div class="title">
+										<h2><a href="#">{{ post.title }}</a></h2>
+									</div>
+									<div class="meta">
+										<a href="#" class="author"><span class="name">{{ post.author }}</span><img src="{{ post.author_picture }}" alt="" /></a>
+                                        <time class="published" datetime="{{ post.date }}">{{ post.date }}</time>
+									</div>
+								</header>
+								<iframe height="500" src="https://www.youtube.com/embed/{{ post.video_url }}" width="100%" frameborder="0" allowfullscreen></iframe>
+                                {{ post.content|safe }}
+                                <p></p>
+								<footer>
+									<ul class="stats">
+										<li><a href="#">{{ post.tag }}</a></li>
+									</ul>
+								</footer>
+							</article>
+
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+        <script src="{% static "js/jquery.min.js" %}"></script>
+        <script src="{% static "js/skel.min.js" %}"></script>
+        <script src="{% static "js/util.js" %}"></script>
+        <script src="{% static "js/main.js" %}"></script>
+
+	</body>
+</html>
