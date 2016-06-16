@@ -7,6 +7,6 @@ urlpatterns = [
     url(r'^$', firstindex),
     url(r'^(\d)/$', index),
     url(r'^post/(\d)/$', post),
-    url(r'^about/$', firstindex),
+    url(r'^about/$', about),
     url(r'^author/$', firstindex),
 ]

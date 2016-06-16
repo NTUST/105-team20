@@ -23,6 +23,11 @@ a {
     width: 100%;
 }
 
+.aboutlogo {
+    max-width: 650px;
+    border: 1px solid #EEE;
+}
+
 @media screen and (max-width: 1280px) {
     .giflogo {
         width: 350px;
