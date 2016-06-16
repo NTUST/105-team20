@@ -6,6 +6,7 @@ def firstindex(request):
 
 def index(request, page):
     posts = PostList.getPostList(page)
+    sidePosts = PostList.getSidePostList()
     page = PostList.getPageInfo(page)
     tages = TagList.getTagList()
 

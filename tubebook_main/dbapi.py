@@ -21,6 +21,25 @@ class PostList:
             "tag": tag.tag_name
         }
 
+    def getSidePostList():
+        firstPost = Post.objects.count()
+        postList = []
+
+        for i in range(firstPost, firstPost-6, -1):
+            post = Post.objects.get(id = i)
+            author = WriterProfile.objects.get(id = post.author_id)
+
+            temp = {
+                "id": i,
+                "title": post.title,
+                "author_picture": author.picture_url,
+                "date": post.date
+            }
+            postList.append(temp)
+
+        return postList
+
+
     def getPostList(page):
         pageNum = int(page)
         allPost = Post.objects.all()
