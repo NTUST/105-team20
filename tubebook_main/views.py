@@ -6,7 +6,7 @@ def firstindex(request):
 
 def index(request, page):
     posts = PostList.getPostList(page)
-    sidePosts = PostList.getSidePostList()
+    sidePosts = PostList.getPostList(1)
     page = PostList.getPageInfo(page)
     tages = TagList.getTagList()
 
@@ -30,7 +30,7 @@ def authorProfile(request, id):
 
 def postListByTag(request, id, page):
     posts = PostList.getPostList(page, "tag", id)
-    sidePosts = PostList.getSidePostList()
+    sidePosts = PostList.getPostList(1)
     page = PostList.getPageInfo(page, "tag", id)
     tages = TagList.getTagList()
     tag = TagList.getTag(id)
@@ -39,7 +39,7 @@ def postListByTag(request, id, page):
 
 def postListByAuthor(request, id, page):
     posts = PostList.getPostList(page, "author", id)
-    sidePosts = PostList.getSidePostList()
+    sidePosts = PostList.getPostList(1)
     page = PostList.getPageInfo(page, "author", id)
     tages = TagList.getTagList()
     author = Authors.getAuthorProfile(id)

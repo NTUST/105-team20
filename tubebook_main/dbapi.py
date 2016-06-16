@@ -23,24 +23,6 @@ class PostList:
             "tag": tag.tag_name
         }
 
-    def getSidePostList():
-        firstPost = Post.objects.count()
-        postList = []
-
-        for i in range(firstPost, firstPost-6, -1):
-            post = Post.objects.get(id = i)
-            author = WriterProfile.objects.get(id = post.author_id)
-
-            temp = {
-                "id": i,
-                "title": post.title,
-                "author_picture": author.picture_url,
-                "date": post.date
-            }
-            postList.append(temp)
-
-        return postList
-
     def getPostList(page, type="", id=""):
         pageNum = int(page)
         if type == "tag":
@@ -80,47 +62,15 @@ class PostList:
             result.insert(0, temp)
         return result
 
-    def getAllPostList(page):
-        pageNum = int(page)
-        allPost = Post.objects.all()
-        firstPost = Post.objects.count() - PAGE_MAX_POST * (pageNum - 1)
-        lastPost = firstPost - PAGE_MAX_POST
-        if lastPost < 1 :
-            lastPost = 1
-        postList = []
-
-        for i in range(firstPost, lastPost-1, -1):
-            author = WriterProfile.objects.get(id = allPost[i-1].author_id)
-            tag = Tag.objects.get(id = allPost[i-1].tag_id)
-            content = allPost[i-1].content
-            if len(content) > 120:
-                content = content[:120]
-            temp = {
-                "id": i,
-                "title": allPost[i-1].title,
-                "author": author.name,
-                "author_id": allPost[i-1].author_id,
-                "author_picture": author.picture_url,
-                "date": allPost[i-1].date,
-                "video_url": allPost[i-1].video_url,
-                "content": content,
-                "tag_id": allPost[i-1].tag_id,
-                "tag": tag.tag_name
-            }
-            postList.append(temp)
-
-
-        return postList
-
-    def getPageInfo(page, type="index", id=""):
-        if type == "index":
-            maxpage = math.ceil(Post.objects.count()/PAGE_MAX_POST)
-        elif type == "tag":
+    def getPageInfo(page, type="", id=""):
+        if type == "tag":
             tag_id = int(id)
             maxpage = math.ceil(Post.objects.filter(tag_id = tag_id).count()/PAGE_MAX_POST)
         elif type == "author":
             author_id = int(id)
             maxpage = math.ceil(Post.objects.filter(author_id = author_id).count()/PAGE_MAX_POST)
+        else:
+            maxpage = math.ceil(Post.objects.count()/PAGE_MAX_POST)
 
 
         emN = False
