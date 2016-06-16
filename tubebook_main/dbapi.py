@@ -14,6 +14,7 @@ class PostList:
             "id": id,
             "title": post.title,
             "author": author.name,
+            "author_id": post.author_id,
             "author_picture": author.picture_url,
             "date": post.date,
             "video_url": post.video_url,
@@ -39,6 +40,41 @@ class PostList:
 
         return postList
 
+    def getAuthorPost(id, page):
+        author_id = int(id)
+        pageNum = int(page)
+
+        author = WriterProfile.objects.get(id = author_id)
+        posts = Post.objects.filter(author_id = author_id)
+        count = posts.count()
+        result = []
+
+        firstPost = count - PAGE_MAX_POST * (pageNum - 1)
+        lastPost = firstPost - PAGE_MAX_POST
+        if lastPost < 1 :
+            lastPost = 1
+
+        for i in range(firstPost, lastPost-1, -1):
+            tag = Tag.objects.get(id = posts[i-1].tag_id)
+            content = posts[i-1].content
+            if len(content) > 120:
+                content = content[:120]
+            temp = {
+                "id": i,
+                "title": posts[i-1].title,
+                "author": author.name,
+                "author_id": posts[i-1].author_id,
+                "author_picture": author.picture_url,
+                "date": posts[i-1].date,
+                "video_url": posts[i-1].video_url,
+                "content": content,
+                "tag": tag.tag_name
+            }
+            result.append(temp)
+
+        return result
+
+
 
     def getPostList(page):
         pageNum = int(page)
@@ -59,6 +95,7 @@ class PostList:
                 "id": i,
                 "title": allPost[i-1].title,
                 "author": author.name,
+                "author_id": allPost[i-1].author_id,
                 "author_picture": author.picture_url,
                 "date": allPost[i-1].date,
                 "video_url": allPost[i-1].video_url,
@@ -101,6 +138,7 @@ class Authors:
             "id": author.id,
             "name": author.name,
             "picture_url": author.picture_url,
+            "mail": author.mail,
             "about": author.about,
             "count": count
         }

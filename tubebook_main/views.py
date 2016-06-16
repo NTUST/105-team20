@@ -25,4 +25,5 @@ def authorList(request):
 
 def authorProfile(request, id):
     author = Authors.getAuthorProfile(id)
+    posts = PostList.getAuthorPost(id, 1)
     return render_to_response('author_profile.html', locals())

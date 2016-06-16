@@ -83,14 +83,41 @@
                                         <div class="author_picture">
                                             <img src="{{ author.picture_url }}" alt="">
                                         </div>
-                                        <h2 class="author_name">{{ author.name }}</h3>
+
                                     </div>
 
-                                    <p>
-                                        {{ author.about }}
-                                    </p>
+                                    <div class="author_about">
+                                        <h2 class="author_name">{{ author.name }}</h3>
+                                        <div class="author_mail"><a href="mailto:{{ author.mail }}">{{ author.mail }}</a></div>
+                                        <!-- <div class="author_count">{{ author.count }}篇文章 | <a href="">看他的文章</a></div> -->
+                                        <div class="author_content">
+                                            {{ author.about|safe }}
+                                        </div>
+                                        <div class="author_count">
+                                            共 {{ author.count }} 篇文章 | <a href="">查看所有文章</a>
+                                        </div>
 
-                                    <p><a href="">文章數量:  {{ author.count }}</a></p>
+                                    </div>
+                                </div>
+
+                                <div class="author_posts_wrap">
+
+                                    <ul class="posts">
+                                        {% for post in posts %}
+    									<li>
+                                            <a href="/post/{{ post.id }}">
+        										<article>
+        											<header>
+        												<h3>{{ post.title }}</h3>
+        												<time class="published" datetime="{{ post.date }}">{{ post.date }}</time>
+        											</header>
+        										</article>
+                                            </a>
+    									</li>
+                                        {% endfor %}
+
+    								</ul>
+
 
                                 </div>
 
