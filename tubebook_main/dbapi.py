@@ -5,6 +5,22 @@ PAGE_MAX_POST = 5
 
 class PostList:
 
+    def getPost(id):
+        post_id = int(id)
+        post = Post.objects.get(id = post_id)
+        author = WriterProfile.objects.get(id = post.author_id)
+        tag = Tag.objects.get(id = post.tag_id)
+        return {
+            "id": id,
+            "title": post.title,
+            "author": author.name,
+            "author_picture": author.picture_url,
+            "date": post.date,
+            "video_url": post.video_url,
+            "content": post.content,
+            "tag": tag.tag_name
+        }
+
     def getPostList(page):
         pageNum = int(page)
         allPost = Post.objects.all()
@@ -17,6 +33,9 @@ class PostList:
         for i in range(firstPost, lastPost-1, -1):
             author = WriterProfile.objects.get(id = allPost[i-1].author_id)
             tag = Tag.objects.get(id = allPost[i-1].tag_id)
+            content = allPost[i-1].content
+            if len(content) > 120:
+                content = content[:120]
             temp = {
                 "id": i,
                 "title": allPost[i-1].title,
@@ -24,7 +43,7 @@ class PostList:
                 "author_picture": author.picture_url,
                 "date": allPost[i-1].date,
                 "video_url": allPost[i-1].video_url,
-                "content": allPost[i-1].content,
+                "content": content,
                 "tag": tag.tag_name
             }
             postList.append(temp)

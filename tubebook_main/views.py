@@ -12,4 +12,5 @@ def index(request, page):
     return render_to_response('index.html', locals())
 
 def post(request, id):
+    post = PostList.getPost(id)
     return render_to_response('post.html', locals())
