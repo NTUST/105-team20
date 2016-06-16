@@ -91,3 +91,18 @@ class TagList:
     def getTagList():
         allTags = Tag.objects.all()
         return allTags
+
+class Authors:
+    def getAuthorList():
+        allAuthor = WriterProfile.objects.all()
+        result = []
+        for author in allAuthor:
+            temp = {
+                "id": author.id,
+                "name": author.name,
+                "picture_url": author.picture_url,
+                "about": author.about
+            }
+            result.append(temp)
+
+        return result

@@ -18,3 +18,7 @@ def post(request, id):
 
 def about(request):
     return render_to_response('about.html', locals())
+
+def authorList(request):
+    authors = Authors.getAuthorList()
+    return render_to_response('author.html', locals())

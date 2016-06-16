@@ -8,5 +8,5 @@ urlpatterns = [
     url(r'^(\d)/$', index),
     url(r'^post/(\d)/$', post),
     url(r'^about/$', about),
-    url(r'^author/$', firstindex),
+    url(r'^author/$', authorList),
 ]

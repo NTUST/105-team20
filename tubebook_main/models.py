@@ -6,7 +6,7 @@ class WriterAccount(models.Model):
 
 class WriterProfile(models.Model):
     name = models.CharField(max_length = 30)
-    picture_url = models.CharField(max_length = 100)
+    picture_url = models.CharField(max_length = 500)
     mail = models.CharField(max_length = 50)
     about = models.TextField()
 
